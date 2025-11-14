@@ -187,7 +187,7 @@ defmodule Triplex do
         if Triplex.config().tenant_table == :"information_schema.schemata" do
           {:ok, :skipped}
         else
-          sql = "INSERT INTO #{Triplex.config().tenant_table} (name) VALUES (?)"
+          sql = "INSERT INTO `#{Triplex.config().tenant_table}` (name) VALUES (?)"
           SQL.query(repo, sql, [to_prefix(tenant)])
         end
 
@@ -202,7 +202,7 @@ defmodule Triplex do
         if Triplex.config().tenant_table == :"information_schema.schemata" do
           {:ok, :skipped}
         else
-          SQL.query(repo, "DELETE FROM #{Triplex.config().tenant_table} WHERE NAME = ?", [tenant])
+          SQL.query(repo, "DELETE FROM `#{Triplex.config().tenant_table}` WHERE NAME = ?", [tenant])
         end
 
       Ecto.Adapters.Postgres ->
