@@ -32,8 +32,8 @@ defmodule Triplex.Mixfile do
 
   defp deps do
     [
-      {:decimal, "~> 2.0"},
-      {:ecto_sql, "~> 3.0"},
+      {:decimal, "~> 3.0"},
+      {:ecto_sql, "~> 3.13"},
 
       # optional dependencies
       {:myxql, ">= 0.3.0", optional: true},
