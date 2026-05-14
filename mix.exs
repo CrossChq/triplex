@@ -8,7 +8,7 @@ defmodule Triplex.Mixfile do
     [
       app: :triplex,
       version: @version,
-      elixir: "~> 1.7",
+      elixir: "~> 1.18",
       package: package(),
       elixirc_paths: elixirc_paths(Mix.env()),
       build_embedded: Mix.env() == :prod,
@@ -32,13 +32,13 @@ defmodule Triplex.Mixfile do
 
   defp deps do
     [
-      {:decimal, "~> 2.0"},
-      {:ecto_sql, "~> 3.0"},
+      {:decimal, "~> 3.0"},
+      {:ecto_sql, "~> 3.13"},
 
       # optional dependencies
-      {:myxql, ">= 0.3.0", optional: true},
+      {:myxql, "~> 0.9", optional: true},
       {:plug, "~> 1.6", optional: true},
-      {:postgrex, ">= 0.15.0", optional: true},
+      {:postgrex, "~> 0.21", optional: true},
 
       # dev support
       {:credo, "~> 1.0", only: [:test, :dev], optional: true, runtime: false},
