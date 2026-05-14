@@ -112,7 +112,7 @@ defmodule TriplexTest do
     end
   end
 
-  test "all/1 must return all tenants, but only those with the tennant prefix" do
+  test "all/1 must return all tenants, but only those with the tenant prefix" do
     for repo <- repos() do
       sql =
         case repo.__adapter__() do
@@ -121,14 +121,14 @@ defmodule TriplexTest do
         end
 
       prefix = Triplex.config().tenant_prefix
-      Application.put_env(:triplex, :tenant_prefix, "test_tennant_prefix")
+      Application.put_env(:triplex, :tenant_prefix, "test_tenant_prefix")
       assert {:ok, _} = Ecto.Adapters.SQL.query(repo, sql, [])
       tenants = ["lala", "lili", "lolo"]
 
       Enum.each(tenants, fn tenant -> Triplex.create(tenant, repo) end)
       assert MapSet.new(Triplex.all(repo)) == MapSet.new(["lala", "lili", "lolo"])
 
-      # restor the prefix to what it was
+      # restore the prefix to what it was
       Enum.each(tenants, fn tenant -> Triplex.drop(tenant, repo) end)
       Application.put_env(:triplex, :tenant_prefix, prefix)
 
